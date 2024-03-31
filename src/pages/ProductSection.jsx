@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { data } from "../utils/data";
+import currencyapi from "@everapi/currencyapi-js";
 import Header from "../components/product/Header";
 import SelectionAndFilter from "../components/product/SelectionAndFilter";
 import TableSection from "../components/product/TableSection";
@@ -45,6 +45,16 @@ const ProductSection = () => {
     ],
     []
   );
+
+  const client = new currencyapi("HAt5vjdmt8D3CZQ8E3szWvVillCixL8XRj7mgTGt");
+  client
+    .latest({
+      base_currency: "USD",
+      currencies: "INR",
+    })
+    .then((response) => {
+      console.log(response);
+    });
 
   return (
     <div className="w-full border rounded-md">
